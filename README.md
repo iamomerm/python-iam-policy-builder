@@ -61,7 +61,7 @@ print(iam_policy.build())
 ```python
 from iam_policy.aws.aws_iam_policy_builder import AWSIAMPolicyBuilder, Statement, Effect
 
-iam_policy = AWSIAMPolicyBuilder(version="2012-10-17")
+iam_policy = AWSIAMPolicyBuilder(version='2012-10-17')
 
 iam_policy.add_statement(
     Statement(

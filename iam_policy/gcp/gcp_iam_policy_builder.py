@@ -30,15 +30,15 @@ class GCPIAMPolicyBuilder:
     iam_policy = GCPIAMPolicyBuilder(version=3)
 
     iam_policy.add_binding(
-        role='roles/viewer',
+        role="roles/viewer",
         members=[
-            'user:alice@example.com',
-            'serviceAccount:compute@example.com'
+            "user:alice@example.com",
+            "serviceAccount:compute@example.com"
         ],
         condition=Condition(
-            title='TimeBoundAccess',
-            expression='request.time < timestamp("2024-12-31T23:59:59Z")',
-            description='Temporary access until end of year'
+            title="TimeBoundAccess",
+            expression=|request.time < timestamp('2024-12-31T23:59:59Z')",
+            description="Temporary access until end of year"
         )._asdict()
     )
 

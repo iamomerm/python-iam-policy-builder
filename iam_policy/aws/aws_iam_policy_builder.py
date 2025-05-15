@@ -46,15 +46,15 @@ class AWSIAMPolicyBuilder:
     iam_policy.add_statement(
         Statement(
             Effect=Effect.Allow.value,
-            Action=['iam:ListUsers'],
-            Resource=['arn:aws:s3:::my-bucket/*'],
-            Sid='AllowListUsers',
+            Action=["iam:ListUsers"],
+            Resource=["arn:aws:s3:::my-bucket/*"],
+            Sid="AllowListUsers",
             Condition={
-                'StringEquals': {
-                    'aws:username': 'alice'
+                "StringEquals": {
+                    "aws:username": "alice"
                 }
             },
-            Principal={'AWS': 'arn:aws:iam::123456789012:user/alice'},
+            Principal={"AWS": "arn:aws:iam::123456789012:user/alice"},
         )._asdict()
     )
 
@@ -78,7 +78,7 @@ class AWSIAMPolicyBuilder:
                     }
                 },
                 "Sid": "AllowListUsers",
-                "Principal": {'AWS': 'arn:aws:iam::123456789012:user/alice'}
+                "Principal": {"AWS": "arn:aws:iam::123456789012:user/alice"}
             }
         ]
     }
