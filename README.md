@@ -17,48 +17,6 @@ You can install this package via PIP: _pip install python-iam-policy-builder_
 <ins> GCP </ins>
 
 ```python
-from gcp.gcp_iam_policy_builder import GCPIAMPolicyBuilder, Condition
-
-iam_policy = GCPIAMPolicyBuilder(version=3)
-
-iam_policy.add_binding(
-    role='roles/viewer',
-    members=[
-        'user:alice@example.com',
-        'serviceAccount:compute@example.com'
-    ],
-    condition=Condition(
-        title='TimeBoundAccess',
-        expression='request.time < timestamp("2024-12-31T23:59:59Z")',
-        description='Temporary access until end of year'
-    )._asdict()
-)
-
-print(iam_policy.build())
-
-# [Output]
-# {
-#     "bindings": [
-#         {
-#             "role": "roles/viewer",
-#             "members": [
-#                 "user:alice@example.com",
-#                 "serviceAccount:compute@example.com"
-#             ],
-#             "condition": {
-#                 "title": "TimeBoundAccess",
-#                 "expression": "request.time < timestamp(\"2024-12-31T23:59:59Z\")",
-#                 "description": "Temporary access until end of year"
-#             }
-#         }
-#     ],
-#     "version": 3
-# }
-```
-
-<ins> AWS </ins>
-
-```python
 from iam_policy.gcp.gcp_iam_policy_builder import GCPIAMPolicyBuilder, Condition
 
 iam_policy = GCPIAMPolicyBuilder(version=3)
@@ -98,7 +56,7 @@ print(iam_policy.build())
 # }
 ```
 
-<ins> GCP </ins>
+<ins> AWS </ins>
 
 ```python
 from iam_policy.aws.aws_iam_policy_builder import AWSIAMPolicyBuilder, Statement, Effect
@@ -147,6 +105,8 @@ print(iam_policy.build())
 ```
 
 ### <ins> Notes </ins>
+
+<ins> GCP </ins>
 
 - Multiple conditions per binding are not supported, as GCP IAM currently allows only one condition per binding (as of May 2025) <br>
 - auditConfigs (Used for configuring audit logging) are not supported <br>
